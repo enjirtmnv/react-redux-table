@@ -1,17 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Datatable from './components/Datatable'
 
 const App = () => {
     const [data, setData] = useState([]);
     const [query, setQuery] = useState('');
 
-    useEffect( () => {
+    useEffect(() => {
         fetch('https://jsonplaceholder.typicode.com/users/')
             .then(response => response.json())
             .then(json => setData(json))
     }, []);
-
-
 
 
     function search(rows) {
@@ -33,15 +31,20 @@ const App = () => {
         {name: 'username', id: 's3r5g4'},
         {name: 'email', id: 'uj8e5'},
         {name: 'phone', id: '20yh1d'}
-        ];
+    ];
 
     return (
         <div className={'container'}>
+            <p className={'h2 d-flex justify-content-center pt-4 pb-2'}>Searching a Datatable in React</p>
             <div>
                 <input
                     type="text"
                     value={query}
-                    onChange={(e) => {setQuery(e.target.value)}}
+                    onChange={(e) => {
+                        setQuery(e.target.value)
+                    }}
+                    placeholder={'Search'}
+                    className={'form-control w-25 m-3'}
                 />
             </div>
             <Datatable
